@@ -1,0 +1,31 @@
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: var(--padding-md);
+  background-color: var(--background);
+}
+
+.titleContainer {
+  display: flex;
+  gap: var(--gap-md);
+  align-items: center;
+}
+
+.button {
+  font-size: var(--font-size-large);
+  line-height: 1;
+  height: auto;
+  background-color: var(--primary);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.searchContainer {
+  display: flex;
+  align-items: stretch;
+  gap: var(--gap-md);
+}

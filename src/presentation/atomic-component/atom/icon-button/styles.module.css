@@ -1,0 +1,10 @@
+.button {
+  background-color: transparent;
+  color: var(--primary);
+  padding: var(--padding-xs);
+  border: 0;
+}
+
+.icon {
+  font-size: var(--font-size-xxxxxlarge);
+}

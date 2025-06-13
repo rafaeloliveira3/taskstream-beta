@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  background-color: var(--white);
+  align-items: center;
+  padding: var(--padding-xl);
+  border-radius: var(--radius-sm);
+}
+
+.buttonsContainer {
+  display: flex;
+  gap: var(--gap-xxl);
+}

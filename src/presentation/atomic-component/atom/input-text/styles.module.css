@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap-md);
+}
+
+.input {
+  background-color: transparent;
+  border: none;
+  min-width: 16ch;
+  color: var(--primary);
+  padding: var(--padding-xsm);
+  font-size: var(--font-size-xlarge);
+  font: inherit;
+  border: 2px solid transparent;
+  outline: none;
+}
+
+.input:hover {
+  border-bottom: 2px solid var(--primary);
+}
+
+.input:focus {
+  outline: none;
+  border-bottom: 2px solid var(--primary);
+}
+
+.icon {
+  color: var(--primary);
+  font-size: var(--font-size-xlarge);
+
+}
+
+.mirror {
+  position: absolute;
+  visibility: hidden;
+  white-space: pre;
+  font: inherit;
+  padding: 0;
+  margin: 0;
+}
