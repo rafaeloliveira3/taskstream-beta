@@ -32,6 +32,11 @@ body,
   padding: 0;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -48,6 +53,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  max-height: 100vh;
   padding: var(--padding-xl);
 }
 

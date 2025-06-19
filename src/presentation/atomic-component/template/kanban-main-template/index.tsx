@@ -1,4 +1,6 @@
+import AddIcon from "@mui/icons-material/Add";
 import type { FC } from "react";
+import { IconButton } from "../../atom";
 import { NavBar } from "../../organism";
 import styles from "./styles.module.css";
 
@@ -12,7 +14,12 @@ export const KanbanMainTemplate: FC<KanbanMainTemplateProps> = ({
   return (
     <main className={styles.container}>
       <NavBar />
-      {children}
+      <div className={styles.content}>
+        {children}
+        <div>
+          <IconButton Icon={AddIcon} customStyle={styles.addButton} />
+        </div>
+      </div>
     </main>
   );
 };
