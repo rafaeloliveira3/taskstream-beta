@@ -1,4 +1,5 @@
 import type { FC } from "react";
+import { NavBar } from "../../organism";
 import styles from "./styles.module.css";
 
 type KanbanMainTemplateProps = {
@@ -8,5 +9,10 @@ type KanbanMainTemplateProps = {
 export const KanbanMainTemplate: FC<KanbanMainTemplateProps> = ({
   children,
 }) => {
-  return <main className={styles.container}>{children}</main>;
+  return (
+    <main className={styles.container}>
+      <NavBar />
+      {children}
+    </main>
+  );
 };
