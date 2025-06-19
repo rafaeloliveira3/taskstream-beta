@@ -37,62 +37,6 @@ const initialColumnsData: Column[] = [
         status: "To do",
         dueDate: "2024-07-30",
       },
-      {
-        id: "task3",
-        title: "Develop Task Card UI",
-        description: "Design the visual representation of a task.",
-        status: "To do",
-        dueDate: "2024-07-30",
-      },
-      {
-        id: "task3",
-        title: "Develop Task Card UI",
-        description: "Design the visual representation of a task.",
-        status: "To do",
-        dueDate: "2024-07-30",
-      },
-      {
-        id: "task3",
-        title: "Develop Task Card UI",
-        description: "Design the visual representation of a task.",
-        status: "To do",
-        dueDate: "2024-07-30",
-      },
-      {
-        id: "task3",
-        title: "Develop Task Card UI",
-        description: "Design the visual representation of a task.",
-        status: "To do",
-        dueDate: "2024-07-30",
-      },
-      {
-        id: "task3",
-        title: "Develop Task Card UI",
-        description: "Design the visual representation of a task.",
-        status: "To do",
-        dueDate: "2024-07-30",
-      },
-      {
-        id: "task3",
-        title: "Develop Task Card UI",
-        description: "Design the visual representation of a task.",
-        status: "To do",
-        dueDate: "2024-07-30",
-      },
-      {
-        id: "task3",
-        title: "Develop Task Card UI",
-        description: "Design the visual representation of a task.",
-        status: "To do",
-        dueDate: "2024-07-30",
-      },
-      {
-        id: "task3",
-        title: "Develop Task Card UI",
-        description: "Design the visual representation of a task.",
-        status: "To do",
-        dueDate: "2024-07-30",
-      },
     ],
   },
   {
@@ -129,6 +73,7 @@ const App: FC = () => {
     string | null
   >(null);
   const [editingTask, setEditingTask] = useState<Task | null>(null);
+  console.log(editingTask, isNewTaskModalOpen, newTaskModalColumnId);
 
   const handleOpenNewTaskModal = (columnId: string | null = null) => {
     setNewTaskModalColumnId(columnId);
