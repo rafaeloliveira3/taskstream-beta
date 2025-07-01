@@ -6,7 +6,7 @@ import styles from "./styles.module.css";
 
 interface KanbanColumnProps {
   column: Column;
-  onAddTask: (columnId: string) => void;
+  onAddTask: (columnId: number) => void;
   onEditTask: (task: Task) => void;
 }
 

@@ -1,4 +1,10 @@
-export type TaskStatus = "Backlog" | "To do" | "In Progress" | "Done";
+export const TaskStatusArray = [
+  "Backlog",
+  "To do",
+  "In Progress",
+  "Done",
+] as const;
+export type TaskStatus = (typeof TaskStatusArray)[number];
 
 export interface Task {
   id: string;
@@ -8,7 +14,7 @@ export interface Task {
   dueDate: string;
 }
 export interface Column {
-  id: string;
+  id: number;
   title: TaskStatus;
   tasks: Task[];
 }

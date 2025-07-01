@@ -6,18 +6,26 @@ import styles from "./styles.module.css";
 
 type KanbanMainTemplateProps = {
   children: React.ReactNode;
+  onOpenNewTaskModal?: () => void;
+  onPressAddButton?: () => void;
 };
 
 export const KanbanMainTemplate: FC<KanbanMainTemplateProps> = ({
   children,
+  onOpenNewTaskModal,
+  onPressAddButton,
 }) => {
   return (
     <main className={styles.container}>
-      <NavBar />
+      <NavBar openModal={onOpenNewTaskModal} />
       <div className={styles.content}>
         {children}
         <div>
-          <IconButton Icon={AddIcon} customStyle={styles.addButton} />
+          <IconButton
+            onClick={onPressAddButton}
+            Icon={AddIcon}
+            customStyle={styles.addButton}
+          />
         </div>
       </div>
     </main>

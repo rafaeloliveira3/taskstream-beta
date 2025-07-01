@@ -1,0 +1,22 @@
+.input {
+  background-color: transparent;
+  width: 100%;
+  color: var(--font);
+  padding: var(--padding-md);
+  font-size: var(--font-size-xlarge);
+  border-radius: var(--radius-sm);
+  font: inherit;
+  border: 2px solid var(--input-border);
+  outline: none;
+  appearance: auto;
+}
+
+.label {
+  color: var(--font);
+  font-size: var(--font-size-xlarge);
+}
+
+.input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.7);
+  cursor: pointer;
+}
