@@ -1,11 +1,12 @@
 import type { FC } from "react";
+import type { ColumnData } from "../../../../types";
 import styles from "./styles.module.css";
 
 type SelectGroupProps = {
   value: string;
   label?: string;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  options?: string[];
+  options?: ColumnData[];
 };
 
 export const SelectGroup: FC<SelectGroupProps> = ({
@@ -24,8 +25,8 @@ export const SelectGroup: FC<SelectGroupProps> = ({
         onChange={onChange}
       >
         {options.map((s) => (
-          <option key={s} value={s}>
-            {s}
+          <option key={s.id} value={s.title}>
+            {s.title}
           </option>
         ))}
       </select>

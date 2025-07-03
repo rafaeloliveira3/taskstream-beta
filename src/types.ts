@@ -1,20 +1,18 @@
-export const TaskStatusArray = [
-  "Backlog",
-  "To do",
-  "In Progress",
-  "Done",
-] as const;
-export type TaskStatus = (typeof TaskStatusArray)[number];
-
 export interface Task {
   id: string;
   title: string;
   description: string;
-  status: TaskStatus;
+  status: string;
   dueDate: string;
+  columnId: number | null;
 }
 export interface Column {
   id: number;
-  title: TaskStatus;
+  title: string;
   tasks: Task[];
+}
+
+export interface ColumnData {
+  title: string;
+  id: number;
 }
