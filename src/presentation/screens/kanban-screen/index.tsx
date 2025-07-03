@@ -89,8 +89,13 @@ export const KanbanScreen: FC = () => {
     setEditingTask(null);
     setIsNewTaskModalOpen(true);
   };
-  const handleSaveTask = (task: Task) => {
-    console.log("Task saved:", task);
+  const handleSaveTask = (task: Omit<Task, "id">) => {
+    if (editingTask) {
+      console.log("Task Edited:", task);
+      console.log("Editing Task ID:", editingTask.id);
+    } else {
+      console.log("Task created:", task);
+    }
   };
 
   const handleEditTask = (task: Task) => {
@@ -132,7 +137,7 @@ export const KanbanScreen: FC = () => {
           title={editingTask ? "Editar Tarefa" : "Nova Tarefa"}
         >
           <TaskForm
-            onSave={() => handleSaveTask}
+            onSave={handleSaveTask}
             onCancel={() => {
               setIsNewTaskModalOpen(false);
               setEditingTask(null);
