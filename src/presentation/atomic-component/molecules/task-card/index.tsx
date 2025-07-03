@@ -1,5 +1,5 @@
 import React from "react";
-import { type Task, type TaskStatus } from "../../../../types";
+import { type Task } from "../../../../types";
 import styles from "./styles.module.css";
 
 interface TaskCardProps {
@@ -7,7 +7,7 @@ interface TaskCardProps {
   onEditTask: (task: Task) => void;
 }
 
-const getStatusClass = (status: TaskStatus): string => {
+const getStatusClass = (status: string): string => {
   switch (status) {
     case "Backlog":
       return styles.badgeBacklog;
@@ -24,12 +24,12 @@ const getStatusClass = (status: TaskStatus): string => {
 
 export const TaskCard: React.FC<TaskCardProps> = ({ task, onEditTask }) => {
   const formattedDueDate = task.dueDate
-    ? new Date(task.dueDate + "T00:00:00").toLocaleDateString("en-US", {
-        month: "2-digit",
+    ? new Date(task.dueDate).toLocaleDateString("pt-BR", {
         day: "2-digit",
+        month: "2-digit",
         year: "numeric",
       })
-    : "No due date";
+    : "Sem data definida";
 
   return (
     <div
