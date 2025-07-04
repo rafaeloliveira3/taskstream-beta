@@ -11,7 +11,7 @@ const getStatusClass = (status: string): string => {
   switch (status) {
     case "Backlog":
       return styles.badgeBacklog;
-    case "To do":
+    case "To Do":
       return styles.badgeTodo;
     case "In Progress":
       return styles.badgeInProgress;

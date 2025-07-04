@@ -18,71 +18,8 @@ import {
 } from "../../atomic-component/organism/";
 import { KanbanMainTemplate } from "../../atomic-component/template";
 
-// const initialColumnsData: Column[] = [
-//   {
-//     id: 0,
-//     title: "Backlog",
-//     tasks: [
-//       {
-//         id: "task1",
-//         title: "Setup project structure",
-//         description: "Initialize React project with TypeScript and Tailwind.",
-//         status: "Backlog",
-//         dueDate: "2024-07-28",
-//       },
-//     ],
-//   },
-//   {
-//     id: 1,
-//     title: "To do",
-//     tasks: [
-//       {
-//         id: "task2",
-//         title: "Implement Header component",
-//         description: "Create the main navigation header.",
-//         status: "To do",
-//         dueDate: "2024-07-29",
-//       },
-//       {
-//         id: "task3",
-//         title: "Develop Task Card UI",
-//         description: "Design the visual representation of a task.",
-//         status: "To do",
-//         dueDate: "2024-07-30",
-//       },
-//     ],
-//   },
-//   {
-//     id: 2,
-//     title: "In Progress",
-//     tasks: [
-//       {
-//         id: "task4",
-//         title: "State management for tasks",
-//         description: "Handle adding, editing, and moving tasks.",
-//         status: "In Progress",
-//         dueDate: "2024-08-01",
-//       },
-//     ],
-//   },
-//   {
-//     id: 3,
-//     title: "Done",
-//     tasks: [
-//       {
-//         id: "task5",
-//         title: "Initial UI styling",
-//         description: "Apply Tailwind CSS for basic layout and colors.",
-//         status: "Done",
-//         dueDate: "2024-07-27",
-//       },
-//     ],
-//   },
-// ];
-
 export const KanbanScreen: FC = () => {
   const { id } = useParams();
-  console.log("Project ID:", id);
   const [isNewTaskModalOpen, setIsNewTaskModalOpen] = useState<boolean>(false);
   const [isCreateColumnModalOpen, setIsCreateColumnModalOpen] =
     useState<boolean>(false);
@@ -106,7 +43,6 @@ export const KanbanScreen: FC = () => {
         if (id) {
           const columns = await getColumns(id);
           const columnsData = await getColumnsNames(id);
-
           setInitialColumnsData(columns || []);
           setColumns(columnsData || []);
         }
@@ -126,38 +62,48 @@ export const KanbanScreen: FC = () => {
     setIsDeleteColumnModalOpen(true);
   };
   const handleSaveTask = async (task: Omit<Task, "id" | "columnId">) => {
+    if (!id) return;
     const columnId = columns.find((column) => column.title === task.status)?.id;
     if (editingTask) {
-      await editTask({
-        ...task,
-        columnId: columnId || null,
-        id: editingTask.id,
-      });
+      await editTask(
+        {
+          ...task,
+          columnId: columnId || null,
+          id: editingTask.id,
+        },
+        id
+      );
     } else {
-      await createTask({
-        ...task,
-        columnId: columnId || null,
-      });
+      await createTask(
+        {
+          ...task,
+          columnId: columnId || null,
+        },
+        id
+      );
     }
     setIsNewTaskModalOpen(false);
     setReload(true);
   };
   const handleDeleteTask = async (taskId: string) => {
+    if (!id) return;
     if (editingTask) {
-      await deleteTask(taskId);
+      await deleteTask(taskId, id);
     }
     setIsNewTaskModalOpen(false);
     setReload(true);
   };
 
   const handleSaveColumn = async (column: Omit<Column, "id">) => {
-    await createColumn(column);
+    if (!id) return;
+    await createColumn(column, id);
     setIsCreateColumnModalOpen(false);
     setReload(true);
   };
   const handleDeleteColumn = async (columnId: number | null) => {
     if (!columnId) return;
-    await deleteColumn(columnId);
+    if (!id) return;
+    await deleteColumn(columnId, id);
     setIsDeleteColumnModalOpen(false);
     setReload(true);
   };
@@ -241,14 +187,23 @@ export const KanbanScreen: FC = () => {
           title="Excluir Coluna"
         >
           <p>Deseja mesmo excluir a coluna {toDeleteColumn?.title}?</p>
-          <Button
-            text="Confirmar"
-            onClick={() => handleDeleteColumn(toDeleteColumn?.id || null)}
-          />
-          <Button
-            text="Cancelar"
-            onClick={() => setIsDeleteColumnModalOpen(false)}
-          />
+          <div
+            style={{
+              gap: "8px",
+              display: "flex",
+              flexDirection: "column",
+              width: "100%",
+            }}
+          >
+            <Button
+              text="Confirmar"
+              onClick={() => handleDeleteColumn(toDeleteColumn?.id || null)}
+            />
+            <Button
+              text="Cancelar"
+              onClick={() => setIsDeleteColumnModalOpen(false)}
+            />
+          </div>
         </BaseModal>
       </KanbanMainTemplate>
     </>
