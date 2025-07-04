@@ -61,6 +61,18 @@ export const TaskForm: FC<TaskFormProps> = ({
       alert("Titulo é obrigatório.");
       return;
     }
+    if (!description.trim()) {
+      alert("Descrição é obrigatório.");
+      return;
+    }
+    if (!dueDate.trim()) {
+      alert("Data é obrigatório.");
+      return;
+    }
+    if (!status.trim()) {
+      alert("Status é obrigatório.");
+      return;
+    }
     onSave({ title, description, dueDate, status });
   };
   const handleDelete = (e: React.FormEvent) => {

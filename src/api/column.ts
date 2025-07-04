@@ -3,9 +3,8 @@ import { api } from "../service/axios";
 import type { Column } from "../types";
 
 export const getColumns = async (projectId: string) => {
-  console.log("Fetching columns for project:", projectId);
   try {
-    const response = await api.get(`/ColumnControllers`);
+    const response = await api.get(`/${projectId}/ColumnControllers`);
     console.log(response);
 
     return response.data as Column[];
@@ -16,13 +15,15 @@ export const getColumns = async (projectId: string) => {
   }
 };
 
-export const createColumn = async (column: Omit<Column, "id">) => {
+export const createColumn = async (
+  column: Omit<Column, "id">,
+  roomId: string
+) => {
   try {
-    const response = await api.post("/ColumnControllers", {
+    const response = await api.post(`/${roomId}/ColumnControllers`, {
       columnTitle: column.title,
       ...column,
     });
-    console.log(response);
 
     return response.data;
   } catch (error: unknown) {
@@ -30,10 +31,9 @@ export const createColumn = async (column: Omit<Column, "id">) => {
   }
 };
 
-export const getColumnsNames = async (projectId: string) => {
-  console.log("Fetching columns for project:", projectId);
+export const getColumnsNames = async (roomId: string) => {
   try {
-    const response = await api.get(`/ColumnControllers`);
+    const response = await api.get(`/${roomId}/ColumnControllers`);
     return response.data.map((column: Column) => {
       return {
         id: column.id,
@@ -47,9 +47,11 @@ export const getColumnsNames = async (projectId: string) => {
   }
 };
 
-export const deleteColumn = async (columnId: number) => {
+export const deleteColumn = async (columnId: number, roomId: string) => {
   try {
-    const response = await api.delete(`/ColumnControllers/${columnId}`);
+    const response = await api.delete(
+      `/${roomId}/ColumnControllers/${columnId}`
+    );
     console.log(response);
 
     return response.data;
